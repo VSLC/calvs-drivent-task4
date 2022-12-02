@@ -2,22 +2,17 @@ import faker from "@faker-js/faker";
 import { prisma } from "@/config";
 
 //Sabe criar objetos - Hotel do banco
-export async function createBooking() {
-  return await prisma.hotel.create({
+export async function createBooking(userId: number, roomId: number) {
+  return await prisma.booking.create({
     data: {
-      name: faker.name.findName(),
-      image: faker.image.imageUrl(),
+      userId: userId,
+      roomId: roomId
     }
   });
 }
-  
-export async function createRoomWithHotelId(hotelId: number) {
-  return prisma.room.create({
-    data: {
-      name: "1020",
-      capacity: 3,
-      hotelId: hotelId,
-    }
+
+export async function findRoomWithId(roomId: number) {
+  return await prisma.room.findFirst({
+    where: { id: roomId }
   });
 }
-  

@@ -62,7 +62,6 @@ describe("GET /hotels", () => {
       const ticketType = await createTicketTypeRemote();
       const ticket = await createTicket(enrollment.id, ticketType.id, TicketStatus.PAID);
       const payment = await createPayment(ticket.id, ticketType.price);
-      //Hoteis no banco
 
       const response = await server.get("/hotels").set("Authorization", `Bearer ${token}`);
 
@@ -112,7 +111,6 @@ describe("GET /hotels", () => {
       const ticketType = await createTicketTypeWithHotel();
       const ticket = await createTicket(enrollment.id, ticketType.id, TicketStatus.PAID);
       const payment = await createPayment(ticket.id, ticketType.price);
-      //Hoteis no banco
 
       const response = await server.get("/hotels").set("Authorization", `Bearer ${token}`);
 
@@ -154,7 +152,6 @@ describe("GET /hotels/:hotelId", () => {
       const ticketType = await createTicketTypeRemote();
       const ticket = await createTicket(enrollment.id, ticketType.id, TicketStatus.PAID);
       const payment = await createPayment(ticket.id, ticketType.price);
-      //Hoteis no banco
 
       const response = await server.get("/hotels/1").set("Authorization", `Bearer ${token}`);
 
@@ -195,7 +192,6 @@ describe("GET /hotels/:hotelId", () => {
       const ticket = await createTicket(enrollment.id, ticketType.id, TicketStatus.PAID);
       const payment = await createPayment(ticket.id, ticketType.price);
 
-      //TODO factory
       const createdHotel = await createHotel();
 
       const createdRoom = await createRoomWithHotelId(createdHotel.id);

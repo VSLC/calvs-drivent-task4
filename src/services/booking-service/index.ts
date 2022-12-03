@@ -29,7 +29,7 @@ async function postBooking(userId: number, roomId: number) {
 
   const findBookRoom = await bookingRepository.findBookingByRoomId(roomId);
   //Retornar depois
-  if (findBookRoom.length !== 1 ? findBookRoom.length === findRoom.capacity : !findBookRoom[0]) {
+  if (findBookRoom.length >= findRoom.capacity) {
     throw forbiddenError();
   }
 

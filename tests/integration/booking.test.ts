@@ -20,7 +20,8 @@ import {
   createTicketTypeWithoutHotel,
   findRoomWithId,
   createTicketType,
-  createBookings
+  createBookings,
+  createRoomWithHotelIdWithoutCapacity
 } from "../factories";
 import { cleanDb, generateValidToken } from "../helpers";
 
@@ -209,7 +210,7 @@ describe("POST:/booking", () => {
       const ticket = await createTicket(enrollment.id, ticketType.id, TicketStatus.PAID);
       const payment = await createPayment(ticket.id, ticketType.price);
       const hotel = await createHotel();
-      const createRoom = await createRoomWithHotelId(hotel.id);
+      const createRoom = await createRoomWithHotelIdWithoutCapacity(hotel.id);
       const booking = await createBooking(user.id, createRoom.id);
       const createMultipleBookings = await createBookings(createRoom.id);
       const body = {
@@ -332,12 +333,7 @@ describe("PUT:/booking/:bookingId", () => {
       const hotel = await createHotel();
       const createRoom = await createRoomWithHotelId(hotel.id);
       const booking = await createBooking(user.id, createRoom.id);
-      const user1 = await createUser();
-      const user2 = await createUser();
-      const user3 = await createUser();
-      const booking1 = await createBooking(user1.id, createRoom.id);
-      const booking2 = await createBooking(user2.id, createRoom.id);
-      const booking3 = await createBooking(user3.id, createRoom.id);
+      const createMultipleBookings = await createBookings(createRoom.id);
 
       const body = {
         roomId: createRoom.id

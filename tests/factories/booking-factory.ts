@@ -24,6 +24,7 @@ export async function createBookings(roomId: number) {
       { userId: user.id, roomId: roomId },
       { userId: user.id, roomId: roomId },
       { userId: user.id, roomId: roomId }
+
     ],
   });
 }

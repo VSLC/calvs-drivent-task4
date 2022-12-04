@@ -211,7 +211,6 @@ describe("POST:/booking", () => {
       const payment = await createPayment(ticket.id, ticketType.price);
       const hotel = await createHotel();
       const createRoom = await createRoomWithHotelIdWithoutCapacity(hotel.id);
-      const booking = await createBooking(user.id, createRoom.id);
       const createMultipleBookings = await createBookings(createRoom.id);
       const body = {
         roomId: createRoom.id

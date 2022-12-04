@@ -54,7 +54,7 @@ async function putBooking(userId: number, newRoomId: number, bookingId: number) 
   }
 
   const findBookRoom = await bookingRepository.findBookingByRoomId(newRoomId);
-  if (findBookRoom.length !== 1 ? findBookRoom.length === findNewRoom.capacity : !findBookRoom[0]) {
+  if (findBookRoom.length === findNewRoom.capacity) {
     throw forbiddenError();
   }
   const updateBooking = await bookingRepository.updateBooking(bookingId, newRoomId);
